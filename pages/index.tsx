@@ -6,21 +6,35 @@ import algoliasearch from 'algoliasearch/lite'
 import { findResultsState } from 'react-instantsearch-dom/server'
 import { Search } from '../components/Search'
 import { createURL, searchStateToURL, pathToSearchState } from '../utils'
+import { request } from "../utils/datocms";
+
 
 // Demo key provided by https://github.com/algolia/react-instantsearch
 const searchClient = algoliasearch(
-  'latency',
-  '6be0576ff61c053d5f9a3225e2a90f76'
+  'FC2QYJU83S',
+  '5c1d09d4af4c086f53eb28a62cf2171f'
 )
 
 const defaultProps = {
   searchClient,
-  indexName: 'instant_search',
+  indexName: 'merge_gaia',
 }
+
+const HOMEPAGE_QUERY = `query HomePage {
+  allCategories {
+    categoryName
+  }
+  allFacets {
+    displayName
+    algoliaFieldName
+    id
+  }
+}`;
 
 export default function Page({
   resultsState,
   searchState: initialState,
+  datoData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter()
   const debouncedSetState = useRef()
@@ -49,6 +63,7 @@ export default function Page({
   }, [router])
 
   return (
+    <>
     <Search
       {...defaultProps}
       searchState={searchState}
@@ -56,15 +71,19 @@ export default function Page({
       onSearchStateChange={onSearchStateChange}
       createURL={createURL}
     />
+    <div>{JSON.stringify(datoData, null, 2)}</div>
+
+    </>
   )
 }
 
 interface PageProps {
   searchState: SearchState
   resultsState: unknown
+  datoData: unknown
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async ({
+export const getServerSideProps: GetServerSideProps<PageProps> = async ({res, 
   resolvedUrl,
 }) => {
   const searchState = pathToSearchState(resolvedUrl)
@@ -73,12 +92,25 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     searchState,
   })
 
+  const datoData = await request({
+    query: HOMEPAGE_QUERY,
+    variables: { limit: 10 },
+    includeDrafts: true,
+    excludeInvalid: true,
+  });
+  
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=1'
+  )
+
   // Pre-serialize `findResultsState` object return so Next.js' serialization checks pass
   // https://github.com/vercel/next.js/issues/11993
   return {
     props: {
       resultsState: JSON.parse(JSON.stringify(resultsState)),
       searchState,
+      datoData,
     },
   }
 }
