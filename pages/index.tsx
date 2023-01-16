@@ -7,7 +7,8 @@ import { findResultsState } from 'react-instantsearch-dom/server'
 import { Search } from '../components/Search'
 import { createURL, searchStateToURL, pathToSearchState } from '../utils'
 import { request } from "../utils/datocms";
-
+import { NoResultsHandler } from '../components/NoResultsHandler';
+import { Image } from "react-datocms";
 
 // Demo key provided by https://github.com/algolia/react-instantsearch
 const searchClient = algoliasearch(
@@ -23,6 +24,17 @@ const defaultProps = {
 const HOMEPAGE_QUERY = `query HomePage {
   allCategories {
     categoryName
+    coverImage {
+      responsiveImage(imgixParams: { fit: crop, w: 300, h: 300, auto: format }) {
+        sizes
+        src
+        width
+        height
+        alt
+        title
+        base64
+      }
+    }
   }
   allFacets {
     displayName
@@ -51,6 +63,8 @@ export default function Page({
     setSearchState(state)
   }
 
+  // console.log(datoData.allCategories[0].coverImage.responsiveImage);
+
   useEffect(() => {
     if (router) {
       router.beforePopState((state: SearchState) => {
@@ -71,7 +85,13 @@ export default function Page({
       onSearchStateChange={onSearchStateChange}
       createURL={createURL}
     />
+
+
     <div>{JSON.stringify(datoData, null, 2)}</div>
+{/*     <div>
+      <Image data={datoData.allCategories[0].coverImage.responsiveImage} />
+    </div> */}
+
 
     </>
   )
@@ -80,7 +100,7 @@ export default function Page({
 interface PageProps {
   searchState: SearchState
   resultsState: unknown
-  datoData: unknown
+  datoData: null
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({res, 
@@ -110,7 +130,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({res,
     props: {
       resultsState: JSON.parse(JSON.stringify(resultsState)),
       searchState,
-      datoData,
+      datoData: datoData,
     },
   }
 }

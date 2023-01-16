@@ -3,18 +3,24 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "clear-cache-tags": "node scripts/clear-cache-tags.js"
   },
   "dependencies": {
+    "@sentry/nextjs": "^7.30.0",
     "algoliasearch": "^4.14.2",
+    "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "instantsearch.css": "^7.4.5",
     "next": "latest",
+    "next-cache-tags": "^0.2.2",
     "qs": "^6.11.0",
     "react": "^18.2.0",
+    "react-datocms": "^4.0.7",
     "react-dom": "^18.2.0",
-    "react-instantsearch-dom": "^6.38.0"
+    "react-instantsearch-dom": "^6.38.0",
+    "redis": "^4.5.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
