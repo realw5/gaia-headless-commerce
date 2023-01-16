@@ -6,7 +6,8 @@ import {
   Highlight,
   Pagination,
   InstantSearch,
-  HierarchicalMenu
+  HierarchicalMenu,
+  Panel
 } from 'react-instantsearch-dom'
 import type { InstantSearchProps } from 'react-instantsearch-dom'
 import Image from 'next/image'
@@ -46,8 +47,12 @@ export function Search(props: InstantSearchProps) {
       </header>
       <main>
         <div className="menu">
-         <HierarchicalMenu attributes={['category.lvl0', 'category.lvl1']} />
-          <RefinementList attribute="color.name" />
+        <Panel header="Category">
+            <HierarchicalMenu attributes={['category.lvl0', 'category.lvl1']} />
+         </Panel>
+         <Panel header="Color">
+            <RefinementList attribute="color.name" />
+          </Panel>
         </div>
         <div className="results">
           <Hits hitComponent={HitComponent} />
