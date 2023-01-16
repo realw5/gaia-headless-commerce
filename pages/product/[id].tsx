@@ -16,7 +16,7 @@ export default function ProductDisplay<PageProps>({tags}:any) {
     <>
         <Link href="/">Home</Link>
         <div>
-            Product ID: {JSON.stringify(tags, null, 2 )}
+            Product ID - Test: {JSON.stringify(tags, null, 2 )}
         </div>
     </>
   );
