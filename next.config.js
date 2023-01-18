@@ -13,7 +13,7 @@ const moduleExports = {
       // and static files we proxy any other requests
       fallback: [
         {
-          source: '/:path*',
+          source: '/marketplace-:path*',
           destination: `https://www.gaiadesign.com.mx/:path*`,
         },
       ],

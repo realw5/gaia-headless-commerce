@@ -1,26 +1,17 @@
-# With Algolia React InstantSearch example
+# GAIA Headless Commerce demo
 
-The goal of this example is to illustrate how you can use [Algolia React InstantSearch](https://community.algolia.com/react-instantsearch/) to perform your search in an application developed with Next.js. It also illustrates how you can keep in sync the Url with the search.
+The goal of this example is to illustrate how you can use [Headless Commerce Concepts](https://docs.google.com/document/d/1EQMWpQiQlj6o5ihBY0w8GpxzrQmy5SKSnt7BAENIGKE/edit#) to create a high-performance, automatted, SEO friendly commerce application developed with Next.js. It also illustrates how you can keep in sync the Url with the search, Client-Side JavaScript instrumentation, handling cache at the edge using currogate keys, and engineering manamgement tools.
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Execute [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to boot strap the example. Then download and run the Vercel CLI tool to pull environment variables and run development:
 
 ```bash
-npx create-next-app --example with-algolia-react-instantsearch with-algolia-react-instantsearch-app
+yarn install
+vc pull
+vc dev
 ```
 
-```bash
-yarn create next-app --example with-algolia-react-instantsearch with-algolia-react-instantsearch-app
-```
-
-```bash
-pnpm create next-app --example with-algolia-react-instantsearch with-algolia-react-instantsearch-app
-```
-
-To set up Algolia:
-
-- create an [algolia](https://www.algolia.com/) account or use this already [configured index](https://community.algolia.com/react-instantsearch/Getting_started.html#before-we-start)
-- update the `appId`, `apikey` and `indexName` you want to search on in [`components/instantsearch.js`](components/instantsearch.js)
+To deploy the example:
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).

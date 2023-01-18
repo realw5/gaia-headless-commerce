@@ -7,13 +7,12 @@ import { findResultsState } from 'react-instantsearch-dom/server'
 import { Search } from '../components/Search'
 import { createURL, searchStateToURL, pathToSearchState } from '../utils'
 import { request } from "../utils/datocms";
-import { NoResultsHandler } from '../components/NoResultsHandler';
 import { Image } from "react-datocms";
 
 // Demo key provided by https://github.com/algolia/react-instantsearch
 const searchClient = algoliasearch(
   'FC2QYJU83S',
-  '5c1d09d4af4c086f53eb28a62cf2171f'
+  `${process.env.NEXT_PUBLIC_ALGOLIA_API_KEY}`
 )
 
 const defaultProps = {
@@ -84,15 +83,14 @@ export default function Page({
       resultsState={resultsState}
       onSearchStateChange={onSearchStateChange}
       createURL={createURL}
+      datoData={datoData}
     />
-
-
-    <div>{JSON.stringify(datoData, null, 2)}</div>
-{/*     <div>
+   {/*  <div>{JSON.stringify(datoData, null, 2)}</div> */}
+    <div>
+      { datoData.allCategories.length && (
       <Image data={datoData.allCategories[0].coverImage.responsiveImage} />
-    </div> */}
-
-
+      ) }
+    </div>
     </>
   )
 }
@@ -100,7 +98,9 @@ export default function Page({
 interface PageProps {
   searchState: SearchState
   resultsState: unknown
-  datoData: null
+  datoData: {
+    [key: string]: any[];
+  }
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async ({res, 
@@ -119,6 +119,13 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({res,
     excludeInvalid: true,
   });
   
+  // This value is considered fresh for ten seconds (s-maxage=10).
+  // If a request is repeated within the next 10 seconds, the previously
+  // cached value will still be fresh. If the request is repeated before 59 seconds,
+  // the cached value will be stale but still render (stale-while-revalidate=59).
+  //
+  // In the background, a revalidation request will be made to populate the cache
+  // with a fresh value. If you refresh the page, you will see the new value.
   res.setHeader(
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=1'
