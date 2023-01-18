@@ -4,11 +4,12 @@ The goal of this example is to illustrate how you can use [Headless Commerce Con
 
 ## How to use
 
-Execute [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to boot strap the example:
+Execute [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to boot strap the example. Then download and run the Vercel CLI tool to pull environment variables and run development:
 
 ```bash
 yarn install
-yarn dev
+vc pull
+vc dev
 ```
 
 To deploy the example:

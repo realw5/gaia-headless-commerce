@@ -12,7 +12,7 @@ import { Image } from "react-datocms";
 // Demo key provided by https://github.com/algolia/react-instantsearch
 const searchClient = algoliasearch(
   'FC2QYJU83S',
-  '5c1d09d4af4c086f53eb28a62cf2171f'
+  `${process.env.NEXT_PUBLIC_ALGOLIA_API_KEY}`
 )
 
 const defaultProps = {
