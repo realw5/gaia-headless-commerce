@@ -30,8 +30,8 @@ const HitComponent = ({hit}: any) => {
       <Link href={`/product/${hit.product_id}`}>
       <div>
         <Highlight attribute="name" hit={hit} />
-{/*         <span> - ${hit.price}</span>
- */}      </div>
+         <span> - ${hit.sales}</span>
+      </div>
       <div className="hit-type">
         <Highlight attribute="type" hit={hit} />
       </div>
