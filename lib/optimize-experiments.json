@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Platform Experiment",
+      "id": "MFY6FYIySra93KqA3vs9UQ",
+      "variants": [
+        {
+          "name": "CS-Cart",
+          "id": 0,
+          "weight": 95
+        },
+        {
+          "name": "Magento",
+          "id": 1,
+          "weight": 5
+        }
+      ]
+    }
+  ]

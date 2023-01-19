@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { cacheTags } from '../../lib/cache-tags'
+import { useRouter } from 'next/router'
 
 type Product = {
   id: string
@@ -12,12 +12,15 @@ interface PageProps {
 
 
 export default function ProductDisplay<PageProps>({productID}: any) {
-    console.log(productID)
+  const router = useRouter()
+
+   console.log(router)
   return ( 
     <>
         <Link href="/">Home</Link>
+        <h1>Product Page</h1>
         <div>
-            Product ID - Test: {productID}
+            GAIA SKU: {productID}
         </div>
     </>
   );

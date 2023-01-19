@@ -13,7 +13,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "instantsearch.css": "^7.4.5",
-    "next": "latest",
+    "next": "canary",
     "next-cache-tags": "^0.2.2",
     "qs": "^6.11.0",
     "react": "^18.2.0",

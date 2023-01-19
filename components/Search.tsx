@@ -44,8 +44,6 @@ const HitComponent = ({hit}: any) => {
 )}
 
 export function Search(props: any) {
-  console.log(props)
-
   return (
     <InstantSearch {...props}>
       <Configure hitsPerPage={12} />
