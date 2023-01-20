@@ -1,1 +1,1 @@
-export const COOKIE_NAME = 'ab-optimize'
+export const COOKIE_NAME = 'platform'

@@ -18,7 +18,7 @@ export default function ProductDisplay<PageProps>({productID}: any) {
   return ( 
     <>
         <Link href="/">Home</Link>
-        <h1>Product Page</h1>
+        <h1>CS-Cart Product Page Handler Mock (will update to forward to cs-cart route)</h1>
         <div>
             GAIA SKU: {productID}
         </div>

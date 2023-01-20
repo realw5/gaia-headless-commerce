@@ -28,10 +28,12 @@ export function middleware(req: NextRequest) {
       n -= v.weight
     })
 
-    cookie = `${experiment.id}.${variant.id}`
+   // cookie = `${experiment.id}.${variant.id}`
+      cookie = `${variant.name}`
   }
 
-  const [, variantId] = cookie.split('.')
+ //const [, variantId] = cookie.split('.')
+  const variantId  = cookie
   const url = req.nextUrl
   const sku = getGAIASKU(url.pathname)?.sku
 
@@ -47,7 +49,7 @@ export function middleware(req: NextRequest) {
 
   // `0` is the original version (Magento)
   // Ideally we can set a head value here, that we can then read in Cloudflare under a new endpoint, with zero config
-  if (variantId !== '0' && sku) {
+  if (variantId == 'CS-Cart' && sku) {
     url.pathname = url.pathname.replace(url.pathname, `/product/${sku}`)
     cookie_for_cloudflare = 'Y';
   } 
