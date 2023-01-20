@@ -16,7 +16,7 @@ Understanding the middle:
 The middle is intercepting the request, and applying logic using external services/data source to transform and rewrite the forwarding requet to
 matching the CS-Cart expected requet to respond with the proper tempalte and category/product.
 
-Setting the cookie `platform` to either 'CS-Cart' or 'Magento' will simulate traffic spliting to test. See console logs for debugging information.
+Setting the cookie `gredir` to 'Y' should load CS-Cart while setting to 'N' should load a Magento codebase. See console logs for debugging information.
 
 To deploy the example:
 

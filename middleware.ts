@@ -47,9 +47,9 @@ export function middleware(req: NextRequest) {
    //return NextResponse.rewrite(new URL('/about-2', req.url));
   
 
-  // `0` is the original version (Magento)
-  // Ideally we can set a head value here, that we can then read in Cloudflare under a new endpoint, with zero config
-  if (variantId == 'CS-Cart' && sku) {
+  // `Y` is the CS-Cart version
+  // Ideally we can set a head value here, that we can then read in Cloudflare under a new endpoint, while handling all the logic for urls here
+  if (variantId == 'Y' && sku) {
     url.pathname = url.pathname.replace(url.pathname, `/product/${sku}`)
     cookie_for_cloudflare = 'Y';
   } 
