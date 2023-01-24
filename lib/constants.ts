@@ -1,1 +1,1 @@
-export const COOKIE_NAME = 'gredir'
+export const COOKIE_NAME = 'ab-test-platform'

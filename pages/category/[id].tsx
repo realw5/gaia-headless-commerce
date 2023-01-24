@@ -1,26 +1,21 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 
-type Product = {
-  id: string
-  name: string
-  relatedProducts: string[]
-}
 interface PageProps {
-  productID: string;
+  categorySlug: string;
 }
 
 
-export default function ProductDisplay<PageProps>({productID}: any) {
+export default function CategoryDisplay<PageProps>({categorySlug}: any) {
   const router = useRouter()
 
    console.log(router)
   return ( 
     <>
         <Link href="/">Home</Link>
-        <h1>CS-Cart Product Page Handler Mock (will update to proxy to special cs-cart route)</h1>
+        <h1>CS-Cart Category Page Handler Mock (will update to proxy to special cs-cart route)</h1>
         <div>
-            GAIA SKU: {productID}
+            GAIA Category Slug: TBD
         </div>
     </>
   );
@@ -31,7 +26,7 @@ export async function getStaticPaths() {
   return { 
     paths: [
     {
-      params: { id: '22817' },
+      params: { id: '/test/test' },
     },
   ], 
   fallback: 'blocking' }
@@ -39,7 +34,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(ctx: any) {
   // Fetch necessary data for the product display page using params.id
-  const productID = ctx.params.id;
+  const categorySlug = ctx.params.id;
 
   // Here we woukld call the product lib to fetch data either via Algolia or directly from a PIM
   // const product: Product = await loadProduct(productID)
@@ -54,7 +49,7 @@ export async function getStaticProps(ctx: any) {
 
   return {
     props: {
-      productID
+      categorySlug
       },
       revalidate: 800, // In seconds
     }
