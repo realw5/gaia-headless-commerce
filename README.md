@@ -4,20 +4,37 @@ The goal of this example is to illustrate how you can use [Headless Commerce Con
 
 ## How to use
 
-Execute [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to boot strap the example. Then download and run the Vercel CLI tool to pull environment variables and run development:
+Download and install [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) using NPM. 
+
+```bash
+npm install --global yarn
+```
+
+Then download and run the Vercel CLI tool to pull environment variables and run development server:
+
+```bash
+yarn global add vercel
+```
+Once both yarn and vercel are installed globally, you can run the following commands to setup and start locally:
 
 ```bash
 yarn install
 vc pull
 vc dev
 ```
-Understanding the middle:
+Understanding the Vercel Middleware:
 
-The middle is intercepting the request, and applying logic using external services/data source to transform and rewrite the forwarding requet to
+The middleware is intercepting the request, and applying logic using external services/data source to transform and rewrite the forwarding requet to
 matching the CS-Cart expected requet to respond with the proper tempalte and category/product.
 
-Setting the cookie `gredir` to 'Y' should load CS-Cart while setting to 'N' should load a Magento codebase. See console logs for debugging information.
+Setting the cookie `ab-platform-test` to 'CS-Cart' should load CS-Cart while setting to 'Magento' should load a Magento codebase. See console logs for debugging information.
+
+See [Vercel Middleware Docs](https://vercel.com/docs/concepts/functions/edge-middleware)
 
 To deploy the example:
+
+```bash
+vc
+```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
