@@ -10,7 +10,7 @@ Download and install [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) using 
 npm install --global yarn
 ```
 
-Then download and run the Vercel CLI tool to pull environment variables and run development server:
+Then download and run the [Vercel CLI](https://vercel.com/docs/cli) tool to pull environment variables and run development server:
 
 ```bash
 yarn global add vercel

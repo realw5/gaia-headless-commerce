@@ -18,7 +18,7 @@ const searchClient = algoliasearch(
 
 const defaultProps = {
   searchClient,
-  indexName: 'merge_gaia',
+  indexName: 'merge_gaia_test',
 }
 
 const HOMEPAGE_QUERY = `query HomePage {
