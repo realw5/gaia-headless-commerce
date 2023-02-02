@@ -13,14 +13,14 @@ npm install --global yarn
 Then download and run the [Vercel CLI](https://vercel.com/docs/cli) tool to pull environment variables and run development server:
 
 ```bash
-yarn global add vercel
+npm i -g vercel
 ```
+
 Once both yarn and vercel are installed globally, you can run the following commands to setup and start locally:
 
 ```bash
 yarn install
-vc pull
-vc dev
+vercel dev
 ```
 Understanding the Vercel Middleware:
 
