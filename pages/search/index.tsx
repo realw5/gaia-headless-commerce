@@ -88,11 +88,11 @@ export default function Page({
       datoData={datoData}
     />
    {/*  <div>{JSON.stringify(datoData, null, 2)}</div> */}
-    <div>
+{/*     <div>
       { datoData.allCategories.length && (
       <Image data={datoData.allCategories[0].coverImage.responsiveImage} />
       ) }
-    </div>
+    </div> */}
     </>
   )
 }

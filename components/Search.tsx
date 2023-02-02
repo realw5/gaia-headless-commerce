@@ -23,14 +23,15 @@ const HitComponent = ({hit}: any) => {
   <div className="hit">
     <div>
       <div className="hit-picture">
-        {/* <Image src={`${hit.image}`} width="165" height="145" alt="" /> */}
-      </div>
+{/*         <img src="https://www.gaiadesign.com.mx/media/catalog/product/cache/28cb47c806b746a91bc25b380c9673fa/s/i/silla_replicaeames_blanco_still1_v5.jpg" width="165" height="145" alt="" />
+ */}      </div>
     </div>
     <div className="hit-content">
-      <Link href={`/product/${hit.product_id}`}>
       <div>
-        <Highlight attribute="name" hit={hit} />
-         <span> - ${hit.price}</span>
+        <Link href={`/product/${hit.product_id}`}>
+          <Highlight attribute="name" hit={hit} />
+        </Link>
+         <span><br/> ${hit.price}</span>
       </div>
       <div className="hit-type">
         <Highlight attribute="type" hit={hit} />
@@ -38,15 +39,18 @@ const HitComponent = ({hit}: any) => {
       <div className="hit-description">
         <Highlight attribute="description" hit={hit} />
       </div>
-      </Link>
+      
     </div>
   </div>
 )}
 
 export function Search(props: any) {
+  const categoryFilter = props.filters || "";
+  console.log(categoryFilter)
+
   return (
     <InstantSearch {...props}>
-      <Configure hitsPerPage={12} />
+      <Configure filters={categoryFilter} hitsPerPage={12} />
       <header>
         <h1>Headless Commerce Example</h1>
         <SearchBox />
@@ -57,7 +61,7 @@ export function Search(props: any) {
             <HierarchicalMenu attributes={['category.lvl0', 'category.lvl1']} />
          </Panel>
           {props.datoData && props.datoData.allFacets.map((facet: Facet) => (
-             <Panel key={facet.displayName} header={facet.displayName}>
+             <Panel key={facet.displayName} header={facet.displayName} footer="&nbsp;">
                 <RefinementList attribute={facet.algoliaFieldName} />
               </Panel>
           ))}

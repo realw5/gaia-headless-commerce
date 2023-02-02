@@ -20,7 +20,7 @@ const moduleExports = {
     }
   },
   images: {
-      domains: ['gaia-images.imgix.net'],
+      domains: ['www.gaiadesign.com.mx'],
     },
   // Optional build-time configuration options
   sentry: {
