@@ -51,6 +51,8 @@ const CATEGORY_QUERY = `query Category($slug: String) {
     filters {
       algoliaFieldName
       displayName
+      refinementType
+      id
     }
     algoliaQuery
   }
@@ -101,7 +103,8 @@ export default function Page({
         onSearchStateChange={onSearchStateChange}
         createURL={createURL}
         datoData={datoData}
-        filters={categoryData.algoliaQuery}
+        initialFilters={categoryData.algoliaQuery}
+        navigationFilters={categoryData.filters}
       />
       {/*  <div>{JSON.stringify(datoData, null, 2)}</div> */}
       {/*     <div>
@@ -130,14 +133,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   resolvedUrl,
 }) => {
   const slug = params.slug;
-  const searchState = pathToSearchState(resolvedUrl);
-  const modifiedSearchState = { ...searchState, filters: `color.name:"Negro"` };
-
-  const resultsState = await findResultsState(Search, {
-    ...defaultProps,
-    searchState: modifiedSearchState,
-  });
-  console.log(searchState, slug, modifiedSearchState, resultsState);
+ const searchStateFromURL = pathToSearchState(resolvedUrl);
 
   const datoData = await request({
     query: HOMEPAGE_QUERY,
@@ -153,6 +149,19 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     excludeInvalid: true,
   });
 
+  const searchState = { 
+    ...searchStateFromURL,
+      filters: `${categoryData.category.algoliaQuery}`,
+};
+
+
+  const resultsState = await findResultsState(Search, {
+    ...defaultProps,
+    searchState,
+  });
+
+  console.log(resultsState,searchState);
+
   // This value is considered fresh for ten seconds (s-maxage=10).
   // If a request is repeated within the next 10 seconds, the previously
   // cached value will still be fresh. If the request is repeated before 59 seconds,
@@ -167,7 +176,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   return {
     props: {
       resultsState: JSON.parse(JSON.stringify(resultsState)),
-      searchState: modifiedSearchState,
+      searchState,
       datoData: datoData,
       categoryData: categoryData.category,
     },

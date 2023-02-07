@@ -45,7 +45,7 @@ const HitComponent = ({hit}: any) => {
 )}
 
 export function Search(props: any) {
-  const categoryFilter = props.filters || "";
+  const categoryFilter = props.initialFilters || "";
   console.log(categoryFilter)
 
   return (
@@ -60,7 +60,7 @@ export function Search(props: any) {
         <Panel header="Category">
             <HierarchicalMenu attributes={['category.lvl0', 'category.lvl1']} />
          </Panel>
-          {props.datoData && props.datoData.allFacets.map((facet: Facet) => (
+          {props.navigationFilters && props.navigationFilters.map((facet: Facet) => (
              <Panel key={facet.displayName} header={facet.displayName} footer="&nbsp;">
                 <RefinementList attribute={facet.algoliaFieldName} />
               </Panel>
