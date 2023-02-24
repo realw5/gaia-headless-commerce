@@ -131,6 +131,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   params,
   res,
   resolvedUrl,
+  preview,
+  previewData,
 }) => {
   const slug = params.slug;
  const searchStateFromURL = pathToSearchState(resolvedUrl);
@@ -138,14 +140,14 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   const datoData = await request({
     query: HOMEPAGE_QUERY,
     variables: { limit: 10 },
-    includeDrafts: true,
+    includeDrafts: preview,
     excludeInvalid: true,
   });
 
   const categoryData = await request({
     query: CATEGORY_QUERY,
     variables: { slug: slug },
-    includeDrafts: true,
+    includeDrafts: preview,
     excludeInvalid: true,
   });
 
@@ -160,7 +162,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
     searchState,
   });
 
-  console.log(resultsState,searchState);
+  console.log(searchState,preview,previewData);
 
   // This value is considered fresh for ten seconds (s-maxage=10).
   // If a request is repeated within the next 10 seconds, the previously
