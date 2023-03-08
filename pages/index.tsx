@@ -10,10 +10,6 @@ const HOMEPAGE_QUERY = `query HomePage {
   allCategories {
     slug
     categoryName
-    filters {
-      algoliaFieldName
-      displayName
-    }
   }
 }`;
 
@@ -113,8 +109,8 @@ export default function Home(categories) {
 export async function getStaticProps() {
   const topLevelCategories = await request({
     query: HOMEPAGE_QUERY,
-    variables: {},
-    includeDrafts: true,
+    variables: { limit: 10 },
+    includeDrafts: false,
     excludeInvalid: true,
   });
 

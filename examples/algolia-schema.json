@@ -1,0 +1,33 @@
+[
+  {
+    "family_code": "50001",
+    "sku": "50001_1",
+    "color": "blue",
+    "size": "small",
+    "price": "1000.00",
+    "thumbnail_url": "tshirt-50001-blue-small.png",
+    "variants": [
+        {
+          "color_variants": ["orange", "teal", "yellow", "red", "green"],
+          "other_variants": ["large", "small"],
+          "swatch_variants": ["image_path.jpg", "image_path2.jpg"]
+        }
+      ]
+  },
+  {
+    "family_code": "50001", // << used as a distinct attribute and will collapse the two records/documents into a single document while returning the best match variant
+    "sku": "50001_2",
+    "color": "orange",
+    "size": "large",
+    "price": "2000.00", // << all specific variant data will be returned on each document
+    "thumbnail_url": "tshirt-50001-orange-large.png",
+    "variants": [
+      {
+        "color_variants": ["orange", "teal", "yellow", "red", "green"],
+        "other_variants": ["large", "small"], // << if other variant context is needed, for example, for grid views or other frontend rendering needs, then you can store the data needed on each record (althogh it may be duplicated or seem redundent). This allows for the distinct, relvancy score to work while ensuring you have the data to do rendering
+        "swatch_variants": ["image_path", "image_path2"]
+    }
+    ]
+  }
+  /// ...
+]

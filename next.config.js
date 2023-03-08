@@ -14,7 +14,7 @@ const moduleExports = {
       fallback: [
         {
           source: '/:path*',
-          destination: `https://legacy.gaiadesign.com.mx/:path*`,
+          destination: `https://www.gaiadesign.com.mx/:path*`,
         },
       ],
     }
