@@ -14,7 +14,7 @@ const moduleExports = {
       fallback: [
         {
           source: '/:path*',
-          destination: `https://preprod.gaiadesign.com.mx/:path*`,
+          destination: `https://legacy.gaiadesign.com.mx/:path*`,
         },
       ],
     }
@@ -50,6 +50,8 @@ const sentryWebpackPluginOptions = {
   //   urlPrefix, include, ignore
 
   silent: true, // Suppresses all logs
+  dryRun: process.env.VERCEL_ENV !== "production"
+
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };

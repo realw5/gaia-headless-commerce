@@ -18,9 +18,9 @@ export default function ProductDisplay<PageProps>({productID}: any) {
   return ( 
     <>
         <Link href="/">Home</Link>
-        <h1>CS-Cart Product Page Handler Mock (will update to proxy to special cs-cart route)</h1>
+        <h1>Product Page Handler Mock</h1>
         <div>
-            GAIA SKU: {productID}
+            GAIA SKU (based on middleware implmentation): {productID}
         </div>
     </>
   );
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   return { 
     paths: [
     {
-      params: { id: '22817' },
+      params: { sku: '22817' },
     },
   ], 
   fallback: 'blocking' }
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(ctx: any) {
   // Fetch necessary data for the product display page using params.id
-  const productID = ctx.params.id;
+  const productID = ctx.params.sku;
 
   // Here we woukld call the product lib to fetch data either via Algolia or directly from a PIM
   // const product: Product = await loadProduct(productID)

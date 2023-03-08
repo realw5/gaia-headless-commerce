@@ -20,7 +20,8 @@
       "@components": ["components/index"],
       "@components/*": ["components/*"],
       "@utils": ["utils/index"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@gaia-design-system/*": ["components/design-system/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

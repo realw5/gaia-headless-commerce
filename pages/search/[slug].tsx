@@ -7,7 +7,6 @@ import { findResultsState } from 'react-instantsearch-dom/server';
 import { Search } from '@components/Search';
 import { createURL, searchStateToURL, pathToSearchState } from '@utils';
 import { request } from '@utils/datocms';
-import { Image } from 'react-datocms';
 import Link from 'next/link';
 
 // Demo key provided by https://github.com/algolia/react-instantsearch

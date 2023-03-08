@@ -2,18 +2,24 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "yarn cms-cache && next build",
     "start": "next start",
-    "clear-cache-tags": "node scripts/clear-cache-tags.js"
+    "clear-cache-tags": "node scripts/clear-cache-tags.js",
+    "cms-cache": "yarn run dato dump --config 'lib/build-time-cache.js' --token=081e95cea52fad0fc43914a6da10c2"
   },
   "dependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-accordion": "^1.1.0",
     "@sentry/nextjs": "^7.30.0",
+    "@stitches/react": "^1.2.8",
+    "@vercel/analytics": "^0.1.11",
     "@vercel/examples-ui": "^1.0.4",
     "algoliasearch": "^4.14.2",
+    "datocms-client": "^3.5.21",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
-    "instantsearch.css": "^7.4.5",
+    "instantsearch.css": "^8.0.0",
     "js-cookie": "^3.0.1",
     "next": "canary",
     "next-cache-tags": "^0.2.2",
@@ -22,7 +28,8 @@
     "react-datocms": "^4.0.7",
     "react-dom": "^18.2.0",
     "react-instantsearch-dom": "^6.38.0",
-    "redis": "^4.5.1"
+    "redis": "^4.5.1",
+    "rheostat": "^4.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

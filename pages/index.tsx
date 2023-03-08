@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import { Layout, Page, Text, Button } from '@vercel/examples-ui';
+import { Button } from '@gaia-design-system/Button';
 import { useState, useEffect } from 'react';
 import { request } from '@utils/datocms';
+import { styled } from '../stitches.config';
 
 const HOMEPAGE_QUERY = `query HomePage {
   allCategories {
@@ -15,6 +16,25 @@ const HOMEPAGE_QUERY = `query HomePage {
     }
   }
 }`;
+
+const Text = styled('p', {
+  fontFamily: '$system',
+  color: '$naranjaGAIA',
+
+  variants: {
+    size: {
+      1: {
+        fontSize: '$1',
+      },
+      2: {
+        fontSize: '$2',
+      },
+      3: {
+        fontSize: '$3',
+      },
+    },
+  },
+});
 
 export default function Home(categories) {
   const router = useRouter();
@@ -39,12 +59,12 @@ export default function Home(categories) {
     <>
       <Link href="/">Home</Link>
       <h1>Headless POC</h1>
-      <div>Current Test: {currentABTest}</div>
+      <div><Text>Current Test:</Text> <Text size={1}>{currentABTest}</Text></div>
       <div>
-        <Button variant="secondary" onClick={optIn}>
+        <Button variant="gray" onClick={optIn}>
           Opt In (CS-Cart)
         </Button>
-        <Button variant="secondary" onClick={optOut}>
+        <Button variant="blue" onClick={optOut}>
           Opt Out (CS-Cart)
         </Button>
       </div>
